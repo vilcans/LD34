@@ -16,13 +16,18 @@ public class CarController : MonoBehaviour {
     private WheelCollider[] wheels;
 
     private bool engineWorking;
+    private bool steeringWorking;
 
     public void BreakEngine() {
         engineWorking = false;
     }
 
+    public void BreakSteering() {
+        steeringWorking = false;
+    }
+
     void Start() {
-        engineWorking = true;
+        engineWorking = steeringWorking = true;
         rigidbodyComponent = GetComponent<Rigidbody>();
         rigidbodyComponent.centerOfMass = centerOfMass;
         wheels = GetComponentsInChildren<WheelCollider>();
@@ -41,7 +46,7 @@ public class CarController : MonoBehaviour {
             power = engineWorking ? enginePower : 0;
             brake = 0;
         }
-        float steer = Input.GetAxis("Horizontal") * maxSteer;
+        float steer = steeringWorking ? Input.GetAxis("Horizontal") * maxSteer : 0;
 
         //Debug.LogFormat("Power {0}, brake {1}, steer {2}", power, brake, steer);
 
