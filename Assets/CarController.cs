@@ -9,18 +9,20 @@ public class CarController : MonoBehaviour {
     public float brakingPower = .1f;
 
     public float neutralSoundSpeed = 10;
+    public float idlePitch = .3f;
 
     private Rigidbody rigidbodyComponent;
     private AudioSource audioSourceComponent;
     private WheelCollider[] wheels;
 
-    private bool destroyed;
+    private bool engineWorking;
 
-    public void Destroy() {
-        destroyed = true;
+    public void BreakEngine() {
+        engineWorking = false;
     }
 
     void Start() {
+        engineWorking = true;
         rigidbodyComponent = GetComponent<Rigidbody>();
         rigidbodyComponent.centerOfMass = centerOfMass;
         wheels = GetComponentsInChildren<WheelCollider>();
@@ -36,7 +38,7 @@ public class CarController : MonoBehaviour {
             brake = rigidbodyComponent.mass * brakingPower;
         }
         else {
-            power = destroyed ? 0 : enginePower;
+            power = engineWorking ? enginePower : 0;
             brake = 0;
         }
         float steer = Input.GetAxis("Horizontal") * maxSteer;
@@ -59,7 +61,13 @@ public class CarController : MonoBehaviour {
             visual.transform.rotation = rotation;
         }
 
-        float speed = rigidbodyComponent.velocity.magnitude;
-        audioSourceComponent.pitch = speed / neutralSoundSpeed;
+        if(engineWorking) {
+            float speed = rigidbodyComponent.velocity.magnitude;
+            audioSourceComponent.pitch = speed / neutralSoundSpeed * (1 - idlePitch) + idlePitch;
+            audioSourceComponent.volume = 1.0f;
+        }
+        else {
+            audioSourceComponent.volume = 0.0f;
+        }
     }
 }

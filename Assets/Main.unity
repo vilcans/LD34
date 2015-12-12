@@ -703,6 +703,7 @@ MonoBehaviour:
   maxSteer: 30
   brakingPower: 2000
   neutralSoundSpeed: 10
+  idlePitch: .300000012
 --- !u!1001 &667797055
 Prefab:
   m_ObjectHideFlags: 0
