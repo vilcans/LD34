@@ -348,6 +348,48 @@ MonoBehaviour:
   enginePower: 2000
   maxSteer: 30
   brakingPower: 2000
+--- !u!1001 &667797055
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 449598, guid: 4260c6a843abb4d81bb877c23137cfe8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 449598, guid: 4260c6a843abb4d81bb877c23137cfe8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 449598, guid: 4260c6a843abb4d81bb877c23137cfe8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 449598, guid: 4260c6a843abb4d81bb877c23137cfe8, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 449598, guid: 4260c6a843abb4d81bb877c23137cfe8, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 449598, guid: 4260c6a843abb4d81bb877c23137cfe8, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 449598, guid: 4260c6a843abb4d81bb877c23137cfe8, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 449598, guid: 4260c6a843abb4d81bb877c23137cfe8, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4260c6a843abb4d81bb877c23137cfe8, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &741656843
 Prefab:
   m_ObjectHideFlags: 0
