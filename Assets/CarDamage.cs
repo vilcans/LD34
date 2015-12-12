@@ -7,6 +7,9 @@ public class CarDamage : MonoBehaviour {
     public float killDamage = 300;
     public float healthPerImpulse = .1f;
 
+    public float fullVolumeVelocity = 25;
+    public AudioClip damageAudio;
+
     private CarController carController;
     private GameController gameController;
 
@@ -37,11 +40,13 @@ public class CarDamage : MonoBehaviour {
         else {
             Debug.LogFormat("Low damage {0}", damage);
         }
-        /*
-        foreach (ContactPoint contact in collision.contacts) {
-            //Debug.Log(contact.thisCollider.name + " hit " + contact.otherCollider.name);
+        float velocity = collision.relativeVelocity.magnitude;
+        float volume = velocity / fullVolumeVelocity;
+        //Debug.LogFormat("velocity {0}, volume {1}", velocity, volume);
+        AudioSource.PlayClipAtPoint(damageAudio, collision.contacts[0].point, volume);
+        /*foreach (ContactPoint contact in collision.contacts) {
+            Debug.Log(contact.thisCollider.name + " hit " + contact.otherCollider.name);
             Debug.DrawRay(contact.point, contact.normal, Color.red);
-        }
-        */
+        }*/
     }
 }

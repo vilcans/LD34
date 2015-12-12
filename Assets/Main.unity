@@ -653,6 +653,8 @@ MonoBehaviour:
   lowerDamageLimit: 100
   killDamage: 300
   healthPerImpulse: .0299999993
+  fullVolumeVelocity: 20
+  damageAudio: {fileID: 8300000, guid: b0f84882afa0144eab3ed03ae2ade4e6, type: 3}
 --- !u!65 &549692059
 BoxCollider:
   m_ObjectHideFlags: 0
