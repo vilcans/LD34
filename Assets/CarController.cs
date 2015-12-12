@@ -14,6 +14,12 @@ public class CarController : MonoBehaviour {
     private AudioSource audioSourceComponent;
     private WheelCollider[] wheels;
 
+    private bool destroyed;
+
+    public void Destroy() {
+        destroyed = true;
+    }
+
     void Start() {
         rigidbodyComponent = GetComponent<Rigidbody>();
         rigidbodyComponent.centerOfMass = centerOfMass;
@@ -30,7 +36,7 @@ public class CarController : MonoBehaviour {
             brake = rigidbodyComponent.mass * brakingPower;
         }
         else {
-            power = enginePower;
+            power = destroyed ? 0 : enginePower;
             brake = 0;
         }
         float steer = Input.GetAxis("Horizontal") * maxSteer;
