@@ -650,7 +650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1000
-  lowerDamageLimit: 100
+  lowerDamageLimit: 5
   killDamage: 300
   healthPerImpulse: .0299999993
   fullVolumeVelocity: 20
