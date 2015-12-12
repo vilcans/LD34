@@ -4,9 +4,8 @@ public class CarController : MonoBehaviour {
 
     public Vector3 centerOfMass = new Vector3(0, -.5f, .3f);
 
-
-    public float enginePower = 150;
-    public float maxSteer = 15;
+    public float enginePower = 2000f;
+    public float maxSteer = 30;
     public float brakingPower = .1f;
 
     private Rigidbody rigidbodyComponent;
@@ -18,7 +17,7 @@ public class CarController : MonoBehaviour {
         wheels = GetComponentsInChildren<WheelCollider>();
     }
 
-    void Update() {
+    void FixedUpdate() {
         bool braking = Input.GetKey("space");
         float brake;
         float power;
@@ -27,7 +26,7 @@ public class CarController : MonoBehaviour {
             brake = rigidbodyComponent.mass * brakingPower;
         }
         else {
-            power = Input.GetAxis("Vertical") * enginePower;
+            power = enginePower;
             brake = 0;
         }
         float steer = Input.GetAxis("Horizontal") * maxSteer;
