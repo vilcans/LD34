@@ -202,7 +202,7 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 1000
-  field of view: 60
+  field of view: 84.0999985
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -242,8 +242,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 549692056}
-  distance: 10
-  height: 5
+  distance: 6.21999979
+  height: 4.5
   rotationDamping: 5
   heightDamping: 3.99000001
 --- !u!1001 &446110243
