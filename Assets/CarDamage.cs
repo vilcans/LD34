@@ -26,7 +26,7 @@ public class CarDamage : MonoBehaviour {
             carController.BreakSteering();
             gameController.Kill();
         }
-        else if(damage >= lowerDamageLimit) {
+        if(damage >= lowerDamageLimit) {
             if(health > 0) {
                 health -= damage;
                 Debug.LogFormat("Damage {0}, new health {1}", damage, health);
