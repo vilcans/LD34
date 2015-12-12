@@ -1,24 +1,38 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
     public GameObject gameOverUI;
+    public Text endText;
 
-    private bool isAlive = true;
+    private enum State {
+        Playing,
+        GameOver,
+    }
+    private State state;
 
     void Start() {
         gameOverUI.SetActive(false);
-        isAlive = true;
+        endText.enabled = false;
+        state = State.Playing;
     }
 
     public void Kill() {
-        if(isAlive) {
-            Debug.Log("Wasted!");
-            isAlive = false;
-            gameOverUI.SetActive(true);
+        if(state == State.Playing) {
+            StopGame("You're smashed");
         }
-        else {
-            Debug.Log("Wasted again!");
+    }
+
+    public void OnCarDestroyed() {
+        if(state == State.Playing) {
+            StopGame("Your car is wrecked");
         }
+    }
+
+    private void StopGame(string reason) {
+        endText.text = reason;
+        endText.enabled = true;
+        gameOverUI.SetActive(true);
     }
 }
