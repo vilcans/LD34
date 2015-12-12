@@ -9,15 +9,20 @@ ModelImporter:
     100002: //RootNode
     100004: CarBody
     100006: Lamp
+    100008: Wheel
     400000: Camera
     400002: //RootNode
     400004: CarBody
     400006: Lamp
+    400008: Wheel
     2300000: CarBody
     2300002: //RootNode
+    2300004: Wheel
     3300000: CarBody
     3300002: //RootNode
+    3300004: Wheel
     4300000: CarBody
+    4300002: Wheel
   materials:
     importMaterials: 0
     materialName: 0
