@@ -8,13 +8,17 @@ public class CarController : MonoBehaviour {
     public float maxSteer = 30;
     public float brakingPower = .1f;
 
+    public float neutralSoundSpeed = 10;
+
     private Rigidbody rigidbodyComponent;
+    private AudioSource audioSourceComponent;
     private WheelCollider[] wheels;
 
     void Start() {
         rigidbodyComponent = GetComponent<Rigidbody>();
         rigidbodyComponent.centerOfMass = centerOfMass;
         wheels = GetComponentsInChildren<WheelCollider>();
+        audioSourceComponent = GetComponentInChildren<AudioSource>();
     }
 
     void FixedUpdate() {
@@ -48,5 +52,8 @@ public class CarController : MonoBehaviour {
             visual.transform.position = position;
             visual.transform.rotation = rotation;
         }
+
+        float speed = rigidbodyComponent.velocity.magnitude;
+        audioSourceComponent.pitch = speed / neutralSoundSpeed;
     }
 }
