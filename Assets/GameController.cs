@@ -6,7 +6,10 @@ public class GameController : MonoBehaviour {
     public GameObject gameOverUI;
     public Text endText;
 
+    public float fadeInTime = .5f;
     public float restartDelay = 2.0f;
+    public float fadeOutTime = .5f;
+    public Image faderImage;
 
     private enum State {
         Playing,
@@ -14,6 +17,7 @@ public class GameController : MonoBehaviour {
     }
     private State state;
 
+    private float fadeInProgress;
     private float gameOverProgress;
 
     void Start() {
@@ -23,12 +27,22 @@ public class GameController : MonoBehaviour {
     }
 
     void Update() {
+        Color newColor = faderImage.color;
+        float fade = newColor.a;
+        if(fadeInProgress < fadeInTime) {
+            fadeInProgress += Time.deltaTime;
+            fade = 1 - Mathf.Clamp01(fadeInProgress / fadeInTime);
+        }
         if(state == State.GameOver) {
             gameOverProgress += Time.deltaTime;
-            if(gameOverProgress >= restartDelay) {
+
+            fade = Mathf.Clamp01(1 - (restartDelay - gameOverProgress) / fadeOutTime);
+            if(gameOverProgress > restartDelay) {
                 Application.LoadLevel(0);
             }
         }
+        newColor.a = fade;
+        faderImage.color = newColor;
     }
 
     public void Kill() {
