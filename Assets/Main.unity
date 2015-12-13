@@ -403,7 +403,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e23841e1b48d449fea289929356506a4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .216000006
+  m_Volume: .421000004
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -918,9 +918,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5247f40e895ee44d18bd67d13d5ebaa6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5af7a31d48ccb48aaa1865c3be7c845e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .270000011
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -996,6 +996,7 @@ MonoBehaviour:
   brakingPower: 2000
   neutralSoundSpeed: 10
   idlePitch: .300000012
+  engineVolume: .479999989
 --- !u!114 &549692062
 MonoBehaviour:
   m_ObjectHideFlags: 0

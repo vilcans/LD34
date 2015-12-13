@@ -10,6 +10,7 @@ public class CarController : MonoBehaviour {
 
     public float neutralSoundSpeed = 10;
     public float idlePitch = .3f;
+    public float engineVolume = .5f;
 
     private Rigidbody rigidbodyComponent;
     private AudioSource audioSourceComponent;
@@ -69,7 +70,7 @@ public class CarController : MonoBehaviour {
         if(engineWorking) {
             float speed = rigidbodyComponent.velocity.magnitude;
             audioSourceComponent.pitch = speed / neutralSoundSpeed * (1 - idlePitch) + idlePitch;
-            audioSourceComponent.volume = 1.0f;
+            audioSourceComponent.volume = engineVolume;
         }
         else {
             audioSourceComponent.volume = 0.0f;
