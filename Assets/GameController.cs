@@ -25,8 +25,11 @@ public class GameController : MonoBehaviour {
     private float gameOverProgress;
 
     private HashSet<GameObject> pickups;
+    private MapView mapView;
 
     IEnumerator Start() {
+        mapView = GetComponentInChildren<MapView>();
+
         // delay fade in until textures have been loaded
         fadeInProgress = -1;
 
@@ -45,6 +48,7 @@ public class GameController : MonoBehaviour {
 
         pickups = new HashSet<GameObject>(GameObject.FindGameObjectsWithTag("Pickup"));
         Debug.LogFormat("Number of pickups: {0}", pickups.Count);
+        mapView.SetPickups(pickups);
     }
 
     void Update() {
@@ -77,6 +81,7 @@ public class GameController : MonoBehaviour {
             Debug.LogWarningFormat("Could not pick up unknown object {0}", pickup);
             return;
         }
+        mapView.PickUp(pickup);
         Destroy(pickup);
         if(pickups.Count == 0 && state == State.Playing) {
             StopGame("You collected them all", true);
