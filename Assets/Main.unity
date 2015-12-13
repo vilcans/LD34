@@ -175,6 +175,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 190366805}
   - 146: {fileID: 190366806}
+  - 114: {fileID: 190366807}
   m_Layer: 0
   m_Name: FrontRightWheel
   m_TagString: Untagged
@@ -224,6 +225,19 @@ WheelCollider:
     m_AsymptoteValue: .75
     m_Stiffness: 3
   m_Enabled: 1
+--- !u!114 &190366807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 190366804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4606059cd2a54e5ea9571136e590e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDamageForce: 10000
+  damagePerNewton: .00100000005
 --- !u!1 &220262455
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,7 +1226,7 @@ MonoBehaviour:
   lowerDamageLimit: 5
   killDamage: 300
   healthPerImpulse: .0299999993
-  fullVolumeVelocity: 10.1800003
+  fullVolumeDamage: 20
   damageAudio:
   - {fileID: 8300000, guid: b0f84882afa0144eab3ed03ae2ade4e6, type: 3}
   - {fileID: 8300000, guid: f11ed242ef69542ec85c08d217c848d6, type: 3}
@@ -2704,6 +2718,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1004361331}
   - 146: {fileID: 1004361332}
+  - 114: {fileID: 1004361333}
   m_Layer: 0
   m_Name: BackRightWheel
   m_TagString: Untagged
@@ -2753,6 +2768,19 @@ WheelCollider:
     m_AsymptoteValue: .75
     m_Stiffness: 3
   m_Enabled: 1
+--- !u!114 &1004361333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1004361330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4606059cd2a54e5ea9571136e590e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDamageForce: 10000
+  damagePerNewton: .00100000005
 --- !u!1 &1007087460
 GameObject:
   m_ObjectHideFlags: 0
@@ -3585,6 +3613,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1400720663}
   - 146: {fileID: 1400720664}
+  - 114: {fileID: 1400720665}
   m_Layer: 0
   m_Name: FrontLeftWheel
   m_TagString: Untagged
@@ -3634,6 +3663,19 @@ WheelCollider:
     m_AsymptoteValue: .75
     m_Stiffness: 3
   m_Enabled: 1
+--- !u!114 &1400720665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1400720662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4606059cd2a54e5ea9571136e590e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDamageForce: 10000
+  damagePerNewton: .00100000005
 --- !u!1001 &1415362541
 Prefab:
   m_ObjectHideFlags: 0
@@ -4799,6 +4841,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2082629562}
   - 146: {fileID: 2082629563}
+  - 114: {fileID: 2082629564}
   m_Layer: 0
   m_Name: BackLeftWheel
   m_TagString: Untagged
@@ -4848,6 +4891,19 @@ WheelCollider:
     m_AsymptoteValue: .75
     m_Stiffness: 3
   m_Enabled: 1
+--- !u!114 &2082629564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2082629561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4606059cd2a54e5ea9571136e590e4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDamageForce: 10000
+  damagePerNewton: .00100000005
 --- !u!4 &2090539529 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: f2f9e3400318f417eb9afaa1aa11fc1b, type: 3}

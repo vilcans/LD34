@@ -7,7 +7,7 @@ public class CarDamage : MonoBehaviour {
     public float killDamage = 300;
     public float healthPerImpulse = .1f;
 
-    public float fullVolumeVelocity = 25;
+    public float fullVolumeDamage = 200;
     public AudioClip[] damageAudio;
 
     private CarController carController;
@@ -18,9 +18,17 @@ public class CarDamage : MonoBehaviour {
         gameController = GetComponentInParent<GameController>();
     }
 
-    void OnCollisionEnter(Collision collision) {
+    public void OnAnyCollision(Collision collision) {
         //Debug.LogFormat("Collsion: {0} impulse {1} velocity {2}", collision, collision.impulse.magnitude, collision.relativeVelocity.magnitude);
         float damage = collision.impulse.magnitude * healthPerImpulse;
+        GiveDamage(damage, collision.contacts[0].point);
+        /*foreach (ContactPoint contact in collision.contacts) {
+            Debug.Log(contact.thisCollider.name + " hit " + contact.otherCollider.name);
+            Debug.DrawRay(contact.point, contact.normal, Color.red);
+        }*/
+    }
+
+    public void GiveDamage(float damage, Vector3 position) {
         if(damage >= killDamage) {
             Debug.LogFormat("Killed by damage {0}", damage);
             carController.BreakSteering();
@@ -40,14 +48,8 @@ public class CarDamage : MonoBehaviour {
         else {
             Debug.LogFormat("Low damage {0}", damage);
         }
-        float velocity = collision.relativeVelocity.magnitude;
-        float volume = velocity / fullVolumeVelocity;
-        Debug.LogFormat("velocity {0}, volume {1}", velocity, volume);
+        float volume = damage / fullVolumeDamage;
         AudioClip clip = damageAudio[Random.Range(0, damageAudio.Length)];
-        AudioSource.PlayClipAtPoint(clip, collision.contacts[0].point, volume);
-        /*foreach (ContactPoint contact in collision.contacts) {
-            Debug.Log(contact.thisCollider.name + " hit " + contact.otherCollider.name);
-            Debug.DrawRay(contact.point, contact.normal, Color.red);
-        }*/
+        AudioSource.PlayClipAtPoint(clip, position, volume);
     }
 }
