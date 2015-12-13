@@ -403,7 +403,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e23841e1b48d449fea289929356506a4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .421000004
+  m_Volume: .209999993
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -999,7 +999,7 @@ MonoBehaviour:
   brakingPower: 2000
   neutralSoundSpeed: 10
   idlePitch: .300000012
-  engineVolume: .479999989
+  engineVolume: .239999995
 --- !u!114 &549692062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1012,7 +1012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupAudio: {fileID: 8300000, guid: a24da254191ff46d0a6161313381ab9a, type: 3}
-  audioVolume: 1
+  audioVolume: .400000006
 --- !u!4 &637393297 stripped
 Transform:
   m_PrefabParentObject: {fileID: 453368, guid: 2334d1bc5a5a847be888d0744e423409, type: 2}
