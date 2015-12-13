@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour {
     private enum State {
         Playing,
         GameOver,
+        Restarting,  // forced by user
     }
     private State state;
 
@@ -47,13 +48,18 @@ public class GameController : MonoBehaviour {
     }
 
     void Update() {
+        if(Input.GetKeyDown(KeyCode.Escape) && state == State.Playing) {
+            Debug.Log("Restarting...");
+            state = State.Restarting;
+            gameOverProgress = restartDelay - fadeOutTime;
+        }
         Color newColor = faderImage.color;
         float fade = newColor.a;
         if(fadeInProgress < fadeInTime) {
             fadeInProgress += Time.deltaTime;
             fade = 1 - Mathf.Clamp01(fadeInProgress / fadeInTime);
         }
-        if(state == State.GameOver) {
+        if(state == State.GameOver || state == State.Restarting) {
             gameOverProgress += Time.deltaTime;
 
             fade = Mathf.Clamp01(1 - (restartDelay - gameOverProgress) / fadeOutTime);
