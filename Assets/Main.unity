@@ -936,6 +936,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ecb2a10c4b444d886094b2ea7baf20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupAudio: {fileID: 8300000, guid: a24da254191ff46d0a6161313381ab9a, type: 3}
+  audioVolume: 1
 --- !u!4 &637393297 stripped
 Transform:
   m_PrefabParentObject: {fileID: 453368, guid: 2334d1bc5a5a847be888d0744e423409, type: 2}
