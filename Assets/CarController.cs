@@ -36,7 +36,7 @@ public class CarController : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        bool braking = Input.GetKey("space");
+        bool braking = false; //Input.GetKey("space");
         float brake;
         float power;
         if(braking) {
