@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class GameController : MonoBehaviour {
 
@@ -20,10 +21,21 @@ public class GameController : MonoBehaviour {
     private float fadeInProgress;
     private float gameOverProgress;
 
-    void Start() {
+    IEnumerator Start() {
+        // delay fade in until textures have been loaded
+        fadeInProgress = -1;
+
+        Color newColor = faderImage.color;
+        newColor.a = 1;
+        faderImage.color = newColor;
+
+        // Wait one frame to load the UI textures
+        yield return null;
         gameOverUI.SetActive(false);
         endText.enabled = false;
         state = State.Playing;
+
+        fadeInProgress = 0;
     }
 
     void Update() {
