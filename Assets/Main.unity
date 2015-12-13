@@ -896,7 +896,10 @@ MonoBehaviour:
   killDamage: 300
   healthPerImpulse: .0299999993
   fullVolumeVelocity: 10.1800003
-  damageAudio: {fileID: 8300000, guid: b0f84882afa0144eab3ed03ae2ade4e6, type: 3}
+  damageAudio:
+  - {fileID: 8300000, guid: b0f84882afa0144eab3ed03ae2ade4e6, type: 3}
+  - {fileID: 8300000, guid: f11ed242ef69542ec85c08d217c848d6, type: 3}
+  - {fileID: 8300000, guid: fd94c3b5ec6644e149d3b7948220aa49, type: 3}
 --- !u!65 &549692059
 BoxCollider:
   m_ObjectHideFlags: 0

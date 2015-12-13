@@ -8,7 +8,7 @@ public class CarDamage : MonoBehaviour {
     public float healthPerImpulse = .1f;
 
     public float fullVolumeVelocity = 25;
-    public AudioClip damageAudio;
+    public AudioClip[] damageAudio;
 
     private CarController carController;
     private GameController gameController;
@@ -42,8 +42,9 @@ public class CarDamage : MonoBehaviour {
         }
         float velocity = collision.relativeVelocity.magnitude;
         float volume = velocity / fullVolumeVelocity;
-        //Debug.LogFormat("velocity {0}, volume {1}", velocity, volume);
-        AudioSource.PlayClipAtPoint(damageAudio, collision.contacts[0].point, volume);
+        Debug.LogFormat("velocity {0}, volume {1}", velocity, volume);
+        AudioClip clip = damageAudio[Random.Range(0, damageAudio.Length)];
+        AudioSource.PlayClipAtPoint(clip, collision.contacts[0].point, volume);
         /*foreach (ContactPoint contact in collision.contacts) {
             Debug.Log(contact.thisCollider.name + " hit " + contact.otherCollider.name);
             Debug.DrawRay(contact.point, contact.normal, Color.red);
