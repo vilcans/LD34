@@ -2145,6 +2145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 1347951009}
   endText: {fileID: 1997780494}
+  restartDelay: 2
 --- !u!1001 &1179786141
 Prefab:
   m_ObjectHideFlags: 0
