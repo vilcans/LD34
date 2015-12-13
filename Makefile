@@ -35,6 +35,6 @@ clean:
 	rm -rf Build/ziptemp
 
 %.gif:%.mov
-	ffmpeg -i $< -s 320x168 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=3 >$@
+	ffmpeg -i $< -vf scale=320:-1 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=9 >$@
 
 .PHONY: release
