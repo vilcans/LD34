@@ -1,5 +1,5 @@
 PROJECT=ld34
-VERSION=0.1.0-$(shell date '+%Y%m%d.%H%M%S')
+VERSION=1.0.0
 #VERSION=1.0.0-2
 FILENAME=$(PROJECT)-$(VERSION)
 RELEASE_DIR=Build/release
