@@ -4,7 +4,12 @@ VERSION=1.0.0
 FILENAME=$(PROJECT)-$(VERSION)
 RELEASE_DIR=Build/release
 
-release: release-win release-mac release-linux
+DEPLOY_PATH=filur:/opt/public/ld34
+
+release: release-win release-mac release-linux release-web
+
+release-web:
+	cp -r Build/web/* Build/release/
 
 release-win: $(RELEASE_DIR)/$(FILENAME)-win32.zip
 
@@ -33,6 +38,9 @@ $(RELEASE_DIR)/$(FILENAME)-linux.tar.gz:
 clean:
 	rm -rf Build/release
 	rm -rf Build/ziptemp
+
+deploy:
+	rsync -avz Build/release/* $(DEPLOY_PATH)
 
 %.gif:%.mov
 	ffmpeg -i $< -vf scale=320:-1 -pix_fmt rgb24 -r 10 -f gif - | gifsicle --optimize=3 --delay=9 >$@
