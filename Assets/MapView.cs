@@ -7,6 +7,7 @@ public class MapView : MonoBehaviour {
     public GameObject markerTemplate;
     public Transform centerObject;
     public RectTransform centerMarker;
+    public Text countText;
 
     private Dictionary<GameObject, GameObject> pickupToMarker;
     private RectTransform contentTransform;
@@ -35,10 +36,17 @@ public class MapView : MonoBehaviour {
             rect.anchoredPosition = new Vector2(obj.transform.position.x, obj.transform.position.z);
             pickupToMarker[obj] = marker;
         }
+        UpdateCount();
     }
 
     public void PickUp(GameObject pickup) {
         GameObject marker = pickupToMarker[pickup];
         Destroy(marker);
+        pickupToMarker.Remove(pickup);
+        UpdateCount();
+    }
+
+    private void UpdateCount() {
+        countText.text = "" + pickupToMarker.Count;
     }
 }
