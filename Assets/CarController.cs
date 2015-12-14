@@ -101,9 +101,6 @@ public class CarController : MonoBehaviour {
     }
 
     private bool IsCurrentlyStill() {
-        float ang = rigidbodyComponent.angularVelocity.magnitude;
-        float vel = rigidbodyComponent.velocity.magnitude;
-        Debug.Log("ang " + ang + " Vel " + vel);
         return
             Mathf.Abs(rigidbodyComponent.angularVelocity.magnitude) < angularVelocityLimit &&
             rigidbodyComponent.velocity.sqrMagnitude < (velocityLimit * velocityLimit);
