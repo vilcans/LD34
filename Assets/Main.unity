@@ -1595,7 +1595,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1000
   lowerDamageLimit: 5
-  killDamage: 300
+  killDamage: 1000
   healthPerImpulse: .0299999993
   fullVolumeDamage: 20
   damageAudio:
