@@ -13,7 +13,7 @@ $(RELEASE_DIR)/$(FILENAME)-win32.zip:
 	rm -rf Build/ziptemp
 	mkdir -p Build/ziptemp
 	cp -r Build/win32 Build/ziptemp/$(FILENAME)
-	bash -c 'cd Build/ziptemp && zip -x .DS_Store -r ../release/$(FILENAME)-win32.zip $(FILENAME)'
+	bash -c 'cd Build/ziptemp && zip -x .DS_Store -x '*.pdb' -r ../release/$(FILENAME)-win32.zip $(FILENAME)'
 
 release-mac: $(RELEASE_DIR)/$(FILENAME).dmg
 
