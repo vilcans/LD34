@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 
 public class GameController : MonoBehaviour {
 
@@ -13,6 +14,7 @@ public class GameController : MonoBehaviour {
     public float restartDelay = 2.0f;
     public float fadeOutTime = .5f;
     public Image faderImage;
+    public AudioSource musicSource;
 
     private enum State {
         Playing,
@@ -73,6 +75,7 @@ public class GameController : MonoBehaviour {
         }
         newColor.a = fade;
         faderImage.color = newColor;
+        musicSource.volume = 1 - fade;
     }
 
     public void PickUp(GameObject pickup) {

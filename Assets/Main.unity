@@ -4293,6 +4293,7 @@ MonoBehaviour:
   restartDelay: 5
   fadeOutTime: 1
   faderImage: {fileID: 1960028169}
+  musicSource: {fileID: 258247328}
 --- !u!1001 &1179786141
 Prefab:
   m_ObjectHideFlags: 0
