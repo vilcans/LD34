@@ -47,6 +47,12 @@ public class MapView : MonoBehaviour {
     }
 
     private void UpdateCount() {
-        countText.text = "" + pickupToMarker.Count;
+        int count = pickupToMarker.Count;
+        if(count == 1) {
+            countText.text = "1 cone";
+        }
+        else {
+            countText.text = "" + pickupToMarker.Count + " cones";
+        }
     }
 }
