@@ -100,6 +100,12 @@ public class GameController : MonoBehaviour {
         }
     }
 
+    public void OnStill() {
+        if(state == State.Playing) {
+            StopGame("You managed to stop,\nbut didn't pick up all cones", true);
+        }
+    }
+
     private void StopGame(string reason, bool success=false) {
         state = State.GameOver;
         gameOverProgress = 0;

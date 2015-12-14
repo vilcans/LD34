@@ -1622,6 +1622,9 @@ MonoBehaviour:
   neutralSoundSpeed: 10
   idlePitch: .300000012
   engineVolume: .239999995
+  angularVelocityLimit: .0500000007
+  velocityLimit: .800000012
+  stillTimeout: 3
 --- !u!114 &549692062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4205,8 +4208,8 @@ MonoBehaviour:
   successUI: {fileID: 1007087460}
   endText: {fileID: 1997780494}
   fadeInTime: .5
-  restartDelay: 2
-  fadeOutTime: .5
+  restartDelay: 5
+  fadeOutTime: 1
   faderImage: {fileID: 1960028169}
 --- !u!1001 &1179786141
 Prefab:

@@ -12,12 +12,19 @@ public class CarController : MonoBehaviour {
     public float idlePitch = .3f;
     public float engineVolume = .5f;
 
+    public float angularVelocityLimit = 2;
+    public float velocityLimit = 1;
+    public float stillTimeout = 3;
+
     private Rigidbody rigidbodyComponent;
     private AudioSource audioSourceComponent;
     private WheelCollider[] wheels;
 
+    private bool braking;
     private bool engineWorking;
     private bool steeringWorking;
+
+    private float stillTime;
 
     public void BreakEngine() {
         engineWorking = false;
@@ -36,7 +43,11 @@ public class CarController : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        bool braking = false; //Input.GetKey("space");
+        UpdateForces();
+        CheckForStill();
+    }
+
+    private void UpdateForces() {
         float brake;
         float power;
         if(braking) {
@@ -75,5 +86,26 @@ public class CarController : MonoBehaviour {
         else {
             audioSourceComponent.volume = 0.0f;
         }
+    }
+
+    private void CheckForStill() {
+        if(!IsCurrentlyStill()) {
+            stillTime = 0;
+            return;
+        }
+        stillTime += Time.deltaTime;
+        if(stillTime >= stillTimeout) {
+            GetComponentInParent<GameController>().OnStill();
+            braking = true;
+        }
+    }
+
+    private bool IsCurrentlyStill() {
+        float ang = rigidbodyComponent.angularVelocity.magnitude;
+        float vel = rigidbodyComponent.velocity.magnitude;
+        Debug.Log("ang " + ang + " Vel " + vel);
+        return
+            Mathf.Abs(rigidbodyComponent.angularVelocity.magnitude) < angularVelocityLimit &&
+            rigidbodyComponent.velocity.sqrMagnitude < (velocityLimit * velocityLimit);
     }
 }
