@@ -10,10 +10,14 @@ public class CarDamage : MonoBehaviour {
     public float fullVolumeDamage = 200;
     public AudioClip[] damageAudio;
 
+    public RectTransform healthBar;
+
     private CarController carController;
     private GameController gameController;
+    private float maxHealth;
 
     void Start() {
+        maxHealth = health;
         carController = GetComponent<CarController>();
         gameController = GetComponentInParent<GameController>();
     }
@@ -51,5 +55,8 @@ public class CarDamage : MonoBehaviour {
         float volume = damage / fullVolumeDamage;
         AudioClip clip = damageAudio[Random.Range(0, damageAudio.Length)];
         AudioSource.PlayClipAtPoint(clip, position, volume);
+
+        float newHeight = Mathf.Max(health / maxHealth, 0) * 128;
+        healthBar.sizeDelta = new Vector2(16, newHeight);
     }
 }
