@@ -75,7 +75,8 @@ public class GameController : MonoBehaviour {
         }
         newColor.a = fade;
         faderImage.color = newColor;
-        musicSource.volume = 1 - fade;
+        // .5 is the default music volume
+        musicSource.volume = .5f - .5f * gameOverProgress / restartDelay;
     }
 
     public void PickUp(GameObject pickup) {
