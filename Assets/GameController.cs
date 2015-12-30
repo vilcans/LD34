@@ -30,8 +30,12 @@ public class GameController : MonoBehaviour {
     private HashSet<GameObject> pickups;
     private MapView mapView;
 
+    private float defaultMusicVolume;
+
     IEnumerator Start() {
         mapView = GetComponentInChildren<MapView>();
+
+        defaultMusicVolume = musicSource.volume;
 
         // delay fade in until textures have been loaded
         fadeInProgress = -1;
@@ -80,8 +84,8 @@ public class GameController : MonoBehaviour {
         }
         newColor.a = fade;
         faderImage.color = newColor;
-        // .5 is the default music volume
-        musicSource.volume = .5f - .5f * restartProgress / fadeOutTime;
+
+        musicSource.volume = defaultMusicVolume - defaultMusicVolume * restartProgress / fadeOutTime;
     }
 
     public void PickUp(GameObject pickup) {
