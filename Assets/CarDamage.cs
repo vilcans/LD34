@@ -56,7 +56,7 @@ public class CarDamage : MonoBehaviour {
         AudioClip clip = damageAudio[Random.Range(0, damageAudio.Length)];
         AudioSource.PlayClipAtPoint(clip, position, volume);
 
-        float newHeight = Mathf.Max(health / maxHealth, 0) * 128;
-        healthBar.sizeDelta = new Vector2(16, newHeight);
+        float newSize = Mathf.Max(health / maxHealth, 0) * 128;
+        healthBar.sizeDelta = new Vector2(newSize, 16);
     }
 }
