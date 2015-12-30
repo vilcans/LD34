@@ -58,7 +58,11 @@ public class CarController : MonoBehaviour {
             power = engineWorking ? enginePower : 0;
             brake = 0;
         }
-        float steer = steeringWorking ? Input.GetAxis("Horizontal") * maxSteer : 0;
+        float steer = 0;
+        if(steeringWorking) {
+            steer = Input.GetAxis("Horizontal") * maxSteer;
+            steer += GetTouchSteering() * maxSteer;
+        }
 
         //Debug.LogFormat("Power {0}, brake {1}, steer {2}", power, brake, steer);
 
@@ -104,5 +108,34 @@ public class CarController : MonoBehaviour {
         return
             Mathf.Abs(rigidbodyComponent.angularVelocity.magnitude) < angularVelocityLimit &&
             rigidbodyComponent.velocity.sqrMagnitude < (velocityLimit * velocityLimit);
+    }
+
+    private float GetTouchSteering() {
+        if(Input.touchCount == 0) {
+            //return 0;
+        }
+        float steering = 0;
+        var touches = Input.touches;
+        for(int i = 0; i < touches.Length; ++i) {
+            Touch touch = touches[i];
+            if(touch.phase != TouchPhase.Ended && touch.phase != TouchPhase.Canceled) {
+                steering += ScreenPointToSteering(touch.position);
+            }
+        }
+        if(Input.GetMouseButton(0)) {
+            steering += ScreenPointToSteering(Input.mousePosition);
+        }
+        Debug.LogFormat("steering {0} screen width {1}", steering, Screen.width);
+        return steering;
+    }
+
+    private float ScreenPointToSteering(Vector2 p) {
+        if(p.x < Screen.width * .25f) {
+            return -1;
+        }
+        if(p.x > Screen.width * .75f) {
+            return 1;
+        }
+        return 0;
     }
 }
