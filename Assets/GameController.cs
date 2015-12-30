@@ -15,9 +15,11 @@ public class GameController : MonoBehaviour {
     public float fadeOutTime = .5f;
     public Image faderImage;
     public AudioSource musicSource;
+    public GameObject menu;
 
-    private enum State {
+    public enum State {
         Playing,
+        Paused,
         GameOver,
         Restarting,  // forced by user
     }
@@ -41,8 +43,9 @@ public class GameController : MonoBehaviour {
 
         // Wait one frame to load the UI textures
         yield return null;
-        gameOverUI.SetActive(false);
         successUI.SetActive(false);
+        menu.SetActive(false);
+        gameOverUI.SetActive(false);
         endText.enabled = false;
         state = State.Playing;
 
@@ -54,19 +57,22 @@ public class GameController : MonoBehaviour {
     }
 
     void Update() {
-        if(Input.GetKeyDown(KeyCode.Escape) && state == State.Playing) {
-            Debug.Log("Restarting...");
-            state = State.Restarting;
-            gameOverProgress = restartDelay - fadeOutTime;
+        if(Input.GetKeyDown(KeyCode.Escape)) {
+            if(state == State.Playing) {
+                Pause();
+            }
+            else if(state == State.Paused) {
+                Unpause();
+            }
         }
         Color newColor = faderImage.color;
         float fade = newColor.a;
         if(fadeInProgress < fadeInTime) {
-            fadeInProgress += Time.deltaTime;
+            fadeInProgress += Time.unscaledDeltaTime;
             fade = 1 - Mathf.Clamp01(fadeInProgress / fadeInTime);
         }
         if(state == State.GameOver || state == State.Restarting) {
-            gameOverProgress += Time.deltaTime;
+            gameOverProgress += Time.unscaledDeltaTime;
 
             fade = Mathf.Clamp01(1 - (restartDelay - gameOverProgress) / fadeOutTime);
             if(gameOverProgress > restartDelay) {
@@ -110,6 +116,22 @@ public class GameController : MonoBehaviour {
         }
     }
 
+    public void OnQuit() {
+        Application.Quit();
+    }
+
+    public void OnRestart() {
+        Unpause();
+        Restart();
+    }
+
+    private void Restart() {
+        Debug.Log("Restarting...");
+        menu.SetActive(false);
+        state = State.Restarting;
+        gameOverProgress = restartDelay - fadeOutTime;
+    }
+
     private void StopGame(string reason, bool success=false) {
         state = State.GameOver;
         gameOverProgress = 0;
@@ -121,5 +143,18 @@ public class GameController : MonoBehaviour {
         else {
             gameOverUI.SetActive(true);
         }
+        menu.SetActive(true);
+    }
+
+    private void Pause() {
+        state = State.Paused;
+        Time.timeScale = 0;
+        menu.SetActive(true);
+    }
+
+    private void Unpause() {
+        state = State.Playing;
+        Time.timeScale = 1;
+        menu.SetActive(false);
     }
 }
