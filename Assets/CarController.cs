@@ -4,6 +4,9 @@ public class CarController : MonoBehaviour {
 
     public Vector3 centerOfMass = new Vector3(0, -.5f, .3f);
 
+    public float steeringSpeed = 3.0f;
+    public float steeringResetSpeed = 3.0f;
+
     public float enginePower = 2000f;
     public float maxSteer = 30;
     public float brakingPower = .1f;
@@ -25,6 +28,8 @@ public class CarController : MonoBehaviour {
     private bool steeringWorking;
 
     private float stillTime;
+
+    private float steering = 0;
 
     public void BreakEngine() {
         engineWorking = false;
@@ -114,28 +119,51 @@ public class CarController : MonoBehaviour {
         if(Input.touchCount == 0) {
             //return 0;
         }
-        float steering = 0;
+        bool leftPressed = false;
+        bool rightPressed = false;
         var touches = Input.touches;
         for(int i = 0; i < touches.Length; ++i) {
             Touch touch = touches[i];
             if(touch.phase != TouchPhase.Ended && touch.phase != TouchPhase.Canceled) {
-                steering += ScreenPointToSteering(touch.position);
+                GetPressesFromScreenPoint(touch.position, ref leftPressed, ref rightPressed);
             }
         }
+#if UNITY_EDITOR
         if(Input.GetMouseButton(0)) {
-            steering += ScreenPointToSteering(Input.mousePosition);
+            GetPressesFromScreenPoint(Input.mousePosition, ref leftPressed, ref rightPressed);
         }
-        Debug.LogFormat("steering {0} screen width {1}", steering, Screen.width);
+#endif
+
+        // Update axis
+        if(leftPressed) {
+            if(steering > 0) {
+                steering = 0;  // Snap
+            }
+            steering = Mathf.Max(-1, steering - Time.deltaTime * steeringSpeed);
+        }
+        else if(steering < 0) {
+            steering = Mathf.Min(0, steering + Time.deltaTime * steeringResetSpeed);
+        }
+        if(rightPressed) {
+            if(steering < 0) {
+                steering = 0;  // Snap
+            }
+            steering = Mathf.Min(1, steering + Time.deltaTime * steeringSpeed);
+        }
+        else if(steering > 0) {
+            steering = Mathf.Max(0, steering - Time.deltaTime * steeringResetSpeed);
+        }
+
+        Debug.LogFormat("steering {0}", steering);
         return steering;
     }
 
-    private float ScreenPointToSteering(Vector2 p) {
+    private void GetPressesFromScreenPoint(Vector2 p, ref bool leftPressed, ref bool rightPressed) {
         if(p.x < Screen.width * .25f) {
-            return -1;
+            leftPressed = true;
         }
-        if(p.x > Screen.width * .75f) {
-            return 1;
+        else if(p.x > Screen.width * .75f) {
+            rightPressed = true;
         }
-        return 0;
     }
 }
