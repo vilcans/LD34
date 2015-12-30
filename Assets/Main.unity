@@ -4624,7 +4624,6 @@ MonoBehaviour:
   successUI: {fileID: 1007087460}
   endText: {fileID: 1997780494}
   fadeInTime: .5
-  restartDelay: 5
   fadeOutTime: 1
   faderImage: {fileID: 1960028169}
   musicSource: {fileID: 258247328}
@@ -5607,7 +5606,7 @@ RectTransform:
   - {fileID: 1301926397}
   - {fileID: 344342138}
   m_Father: {fileID: 1656546916}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -5816,8 +5815,8 @@ RectTransform:
   - {fileID: 111828802}
   - {fileID: 942671552}
   - {fileID: 2099047598}
-  - {fileID: 1960028168}
   - {fileID: 1617857488}
+  - {fileID: 1960028168}
   m_Father: {fileID: 1164455647}
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
@@ -6602,7 +6601,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1656546916}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}

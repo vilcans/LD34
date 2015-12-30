@@ -11,7 +11,6 @@ public class GameController : MonoBehaviour {
     public Text endText;
 
     public float fadeInTime = .5f;
-    public float restartDelay = 2.0f;
     public float fadeOutTime = .5f;
     public Image faderImage;
     public AudioSource musicSource;
@@ -26,7 +25,7 @@ public class GameController : MonoBehaviour {
     private State state;
 
     private float fadeInProgress;
-    private float gameOverProgress;
+    private float restartProgress;
 
     private HashSet<GameObject> pickups;
     private MapView mapView;
@@ -71,18 +70,18 @@ public class GameController : MonoBehaviour {
             fadeInProgress += Time.unscaledDeltaTime;
             fade = 1 - Mathf.Clamp01(fadeInProgress / fadeInTime);
         }
-        if(state == State.GameOver || state == State.Restarting) {
-            gameOverProgress += Time.unscaledDeltaTime;
+        if(state == State.Restarting) {
+            restartProgress += Time.unscaledDeltaTime;
 
-            fade = Mathf.Clamp01(1 - (restartDelay - gameOverProgress) / fadeOutTime);
-            if(gameOverProgress > restartDelay) {
+            fade = Mathf.Clamp01(restartProgress / fadeOutTime);
+            if(restartProgress > fadeOutTime) {
                 Application.LoadLevel(0);
             }
         }
         newColor.a = fade;
         faderImage.color = newColor;
         // .5 is the default music volume
-        musicSource.volume = .5f - .5f * gameOverProgress / restartDelay;
+        musicSource.volume = .5f - .5f * restartProgress / fadeOutTime;
     }
 
     public void PickUp(GameObject pickup) {
@@ -129,12 +128,12 @@ public class GameController : MonoBehaviour {
         Debug.Log("Restarting...");
         menu.SetActive(false);
         state = State.Restarting;
-        gameOverProgress = restartDelay - fadeOutTime;
+        restartProgress = 0;
     }
 
     private void StopGame(string reason, bool success=false) {
         state = State.GameOver;
-        gameOverProgress = 0;
+        restartProgress = 0;
         endText.text = reason;
         endText.enabled = true;
         if(success) {
