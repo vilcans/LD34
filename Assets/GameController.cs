@@ -38,14 +38,15 @@ public class GameController : MonoBehaviour {
         defaultMusicVolume = musicSource.volume;
 
         // delay fade in until textures have been loaded
-        fadeInProgress = -1;
+        fadeInProgress = -999;
 
         Color newColor = faderImage.color;
         newColor.a = 1;
         faderImage.color = newColor;
 
-        // Wait one frame to load the UI textures
-        yield return null;
+        // Wait a while for textures to load
+        yield return new WaitForSeconds(.5f);
+
         successUI.SetActive(false);
         menu.SetActive(false);
         gameOverUI.SetActive(false);
