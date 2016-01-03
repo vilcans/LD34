@@ -70,8 +70,7 @@ public class CarController : MonoBehaviour {
         }
         float steer = 0;
         if(steeringWorking) {
-            steer = Input.GetAxis("Horizontal");
-            steer += GetTouchSteering();
+            steer = GetSteering();
             leftArrow.color = Color.Lerp(Color.white, arrowPressedColor, -steer);
             rightArrow.color = Color.Lerp(Color.white, arrowPressedColor, steer);
         }
@@ -126,12 +125,9 @@ public class CarController : MonoBehaviour {
             rigidbodyComponent.velocity.sqrMagnitude < (velocityLimit * velocityLimit);
     }
 
-    private float GetTouchSteering() {
-        if(Input.touchCount == 0) {
-            //return 0;
-        }
-        bool leftPressed = false;
-        bool rightPressed = false;
+    private float GetSteering() {
+        bool leftPressed = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow);
+        bool rightPressed = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
         var touches = Input.touches;
         for(int i = 0; i < touches.Length; ++i) {
             Touch touch = touches[i];
