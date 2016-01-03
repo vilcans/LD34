@@ -55,7 +55,7 @@ public class GameController : MonoBehaviour {
         fadeInProgress = 0;
 
         pickups = new HashSet<GameObject>(GameObject.FindGameObjectsWithTag("Pickup"));
-        Debug.LogFormat("Number of pickups: {0}", pickups.Count);
+        //Debug.LogFormat("Number of pickups: {0}", pickups.Count);
         mapView.SetPickups(pickups);
     }
 
@@ -129,7 +129,7 @@ public class GameController : MonoBehaviour {
     }
 
     private void Restart() {
-        Debug.Log("Restarting...");
+        //Debug.Log("Restarting...");
         menu.SetActive(false);
         state = State.Restarting;
         restartProgress = 0;

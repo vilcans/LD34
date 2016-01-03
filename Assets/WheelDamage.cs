@@ -18,7 +18,7 @@ public class WheelDamage : MonoBehaviour {
         if(wheelCollider.GetGroundHit(out hit)) {
             float damage = (hit.force - minDamageForce) * damagePerNewton;
             if(damage > 0) {
-                Debug.LogFormat("{0} giving damage {1}", this, damage);
+                //Debug.LogFormat("{0} giving damage {1}", this, damage);
                 carDamage.GiveDamage(damage, transform.position);
             }
         }

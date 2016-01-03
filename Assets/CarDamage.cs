@@ -34,14 +34,14 @@ public class CarDamage : MonoBehaviour {
 
     public void GiveDamage(float damage, Vector3 position) {
         if(damage >= killDamage) {
-            Debug.LogFormat("Killed by damage {0}", damage);
+            //Debug.LogFormat("Killed by damage {0}", damage);
             carController.BreakSteering();
             gameController.Kill();
         }
         if(damage >= lowerDamageLimit) {
             if(health > 0) {
                 health -= damage;
-                Debug.LogFormat("Damage {0}, new health {1}", damage, health);
+                //Debug.LogFormat("Damage {0}, new health {1}", damage, health);
                 if(health <= 0) {
                     health = 0;
                     carController.BreakEngine();
@@ -51,7 +51,7 @@ public class CarDamage : MonoBehaviour {
             }
         }
         else {
-            Debug.LogFormat("Low damage {0}", damage);
+            //Debug.LogFormat("Low damage {0}", damage);
         }
         float volume = damage / fullVolumeDamage;
         AudioClip clip = damageAudio[Random.Range(0, damageAudio.Length)];

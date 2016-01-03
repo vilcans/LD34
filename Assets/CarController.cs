@@ -78,7 +78,7 @@ public class CarController : MonoBehaviour {
         rightArrow.enabled = steeringWorking;
 
         //Debug.LogFormat("Power {0}, brake {1}, steer {2}", power, brake, steer);
-        //
+
         float steerAngle = steer * maxSteer;
 
         for(int i = 0; i < wheels.Length; ++i) {
@@ -161,7 +161,7 @@ public class CarController : MonoBehaviour {
             steering = Mathf.Max(0, steering - Time.deltaTime * steeringResetSpeed);
         }
 
-        Debug.LogFormat("steering {0}", steering);
+        //Debug.LogFormat("steering {0}", steering);
         return steering;
     }
 
