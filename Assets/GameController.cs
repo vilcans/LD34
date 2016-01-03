@@ -84,6 +84,7 @@ public class GameController : MonoBehaviour {
         }
         newColor.a = fade;
         faderImage.color = newColor;
+        faderImage.enabled = fade > 0;
 
         musicSource.volume = defaultMusicVolume - defaultMusicVolume * restartProgress / fadeOutTime;
     }
