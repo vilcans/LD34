@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CarController : MonoBehaviour {
 
@@ -18,6 +19,10 @@ public class CarController : MonoBehaviour {
     public float angularVelocityLimit = 2;
     public float velocityLimit = 1;
     public float stillTimeout = 3;
+
+    public Image leftArrow;
+    public Image rightArrow;
+    public Color arrowPressedColor;
 
     private Rigidbody rigidbodyComponent;
     private AudioSource audioSourceComponent;
@@ -65,16 +70,21 @@ public class CarController : MonoBehaviour {
         }
         float steer = 0;
         if(steeringWorking) {
-            steer = Input.GetAxis("Horizontal") * maxSteer;
-            steer += GetTouchSteering() * maxSteer;
+            steer = Input.GetAxis("Horizontal");
+            steer += GetTouchSteering();
         }
 
+        leftArrow.color = Color.Lerp(Color.white, arrowPressedColor, -steer);
+        rightArrow.color = Color.Lerp(Color.white, arrowPressedColor, steer);
+
         //Debug.LogFormat("Power {0}, brake {1}, steer {2}", power, brake, steer);
+        //
+        float steerAngle = steer * maxSteer;
 
         for(int i = 0; i < wheels.Length; ++i) {
             WheelCollider wheel = wheels[i];
             if(i < 2) {
-                wheel.steerAngle = steer;
+                wheel.steerAngle = steerAngle;
                 wheel.motorTorque = power;
             }
             wheel.brakeTorque = brake;
