@@ -72,10 +72,11 @@ public class CarController : MonoBehaviour {
         if(steeringWorking) {
             steer = Input.GetAxis("Horizontal");
             steer += GetTouchSteering();
+            leftArrow.color = Color.Lerp(Color.white, arrowPressedColor, -steer);
+            rightArrow.color = Color.Lerp(Color.white, arrowPressedColor, steer);
         }
-
-        leftArrow.color = Color.Lerp(Color.white, arrowPressedColor, -steer);
-        rightArrow.color = Color.Lerp(Color.white, arrowPressedColor, steer);
+        leftArrow.enabled = steeringWorking;
+        rightArrow.enabled = steeringWorking;
 
         //Debug.LogFormat("Power {0}, brake {1}, steer {2}", power, brake, steer);
         //
