@@ -45,6 +45,7 @@ public class CarDamage : MonoBehaviour {
                 if(health <= 0) {
                     health = 0;
                     carController.BreakEngine();
+                    carController.BreakSteering();
                     gameController.OnCarDestroyed();
                 }
             }
